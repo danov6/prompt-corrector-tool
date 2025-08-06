@@ -1,0 +1,228 @@
+.suggestions-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.suggestions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.result-summary {
+  flex: 1;
+}
+
+.result-score {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.suggestions-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.new-prompt-button {
+  background: linear-gradient(135deg, #1a4d3a 0%, #2d7a5f 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(26, 77, 58, 0.3);
+  white-space: nowrap;
+}
+
+.new-prompt-button:hover {
+  background: linear-gradient(135deg, #0f3a2a 0%, #1e5a47 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26, 77, 58, 0.4);
+}
+
+.new-prompt-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 77, 58, 0.3), 0 2px 8px rgba(26, 77, 58, 0.3);
+}
+
+.prompt-display {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.prompt-display h3 {
+  margin: 0 0 1rem 0;
+  color: #374151;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.prompt-text {
+  color: #1f2937;
+  line-height: 1.6;
+  font-size: 1rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.suggestions-list h3 {
+  color: #374151;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+}
+
+.suggestions-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.suggestion-card {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.suggestion-card:hover {
+  border-color: #22c55e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.suggestion-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.suggestion-icon {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 8px;
+}
+
+.suggestion-category {
+  font-weight: 600;
+  color: #22c55e;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.suggestion-message {
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.excellent-prompt {
+  text-align: center;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid #22c55e;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  margin-top: 2rem;
+}
+
+.celebration-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.excellent-prompt h3 {
+  color: #16a34a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.excellent-prompt p {
+  color: #15803d;
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .suggestions-container {
+    padding: 0 1rem;
+    margin: 1rem auto;
+  }
+  
+  .suggestions-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .suggestions-title {
+    font-size: 1.5rem;
+  }
+  
+  .new-prompt-button {
+    align-self: flex-start;
+  }
+  
+  .suggestions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .prompt-display,
+  .suggestion-card {
+    padding: 1rem;
+  }
+  
+  .excellent-prompt {
+    padding: 2rem 1rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .suggestion-card {
+    border-width: 3px;
+  }
+  
+  .prompt-display {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .suggestion-card,
+  .new-prompt-button {
+    transition: none;
+    transform: none;
+  }
+  
+  .suggestion-card:hover,
+  .new-prompt-button:hover {
+    transform: none;
+  }
+}
