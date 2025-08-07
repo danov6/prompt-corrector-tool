@@ -2,24 +2,39 @@
   "name": "prompt-grader",
   "version": "1.0.0",
   "description": "A tool to help users create better prompts with real-time grading and suggestions",
-  "main": "src/server/index.js",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon src/server/index.js",
-    "client": "cd src/client && npm start",
-    "build": "cd src/client && npm run build",
-    "install-all": "npm install && cd src/client && npm install"
+    "client": "parcel src/client/index.html --port 3000",
+    "build": "parcel build src/client/index.html --dist-dir dist",
+    "clean": "rm -rf dist .parcel-cache",
+    "install-all": "npm install"
   },
   "dependencies": {
-    "express": "^4.18.2",
+    "axios": "^1.5.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "buffer": "^6.0.3",
+    "concurrently": "^8.2.2",
     "nodemon": "^3.0.1",
-    "concurrently": "^8.2.2"
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
   },
-  "keywords": ["prompt", "grading", "ai", "react", "node"],
+  "keywords": [
+    "prompt",
+    "grading",
+    "ai",
+    "react",
+    "node",
+    "parcel"
+  ],
   "author": "",
   "license": "MIT"
 }

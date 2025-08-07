@@ -1,6 +1,6 @@
 .home-container {
   min-height: calc(100vh - 70px);
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+  background: #1a4d3a;
   position: relative;
   overflow-x: hidden;
 }

@@ -76,6 +76,32 @@
   font-size: 1rem;
   white-space: pre-wrap;
   word-wrap: break-word;
+  transition: all 0.2s ease;
+}
+
+.highlight-text {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: 600;
+  border: 1px solid #f59e0b;
+  animation: highlightPulse 0.3s ease-in-out;
+}
+
+@keyframes highlightPulse {
+  0% {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    transform: scale(1);
+  }
+  50% {
+    background: linear-gradient(135deg, #fde68a 0%, #fbbf24 100%);
+    transform: scale(1.02);
+  }
+  100% {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    transform: scale(1);
+  }
 }
 
 .suggestions-list h3 {
@@ -104,6 +130,15 @@
   border-color: #22c55e;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
+  cursor: pointer;
+}
+
+.suggestion-card:hover .suggestion-category {
+  color: #16a34a;
+}
+
+.suggestion-card:hover .suggestion-icon {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
 }
 
 .suggestion-header {
@@ -199,30 +234,5 @@
   
   .excellent-prompt {
     padding: 2rem 1rem;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .suggestion-card {
-    border-width: 3px;
-  }
-  
-  .prompt-display {
-    border-width: 3px;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .suggestion-card,
-  .new-prompt-button {
-    transition: none;
-    transform: none;
-  }
-  
-  .suggestion-card:hover,
-  .new-prompt-button:hover {
-    transform: none;
   }
 }

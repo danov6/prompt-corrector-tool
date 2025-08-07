@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
 
 const AppContext = createContext();
 
@@ -66,7 +66,7 @@ export function AppProvider({ children }) {
     }
   }, [state.history]);
 
-  const saveToHistory = (prompt, score, suggestions) => {
+  const saveToHistory = useCallback((prompt, score, suggestions) => {
     const historyEntry = {
       id: Date.now(),
       prompt,
@@ -75,7 +75,7 @@ export function AppProvider({ children }) {
       timestamp: new Date().toISOString()
     };
     dispatch({ type: 'ADD_TO_HISTORY', payload: historyEntry });
-  };
+  }, [dispatch]);
 
   const value = {
     ...state,

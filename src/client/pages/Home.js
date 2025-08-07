@@ -1,8 +1,8 @@
-import React from 'react';
-import { useApp } from '../context/AppContext';
-import PromptInput from '../components/PromptInput';
-import SuggestionsList from '../components/SuggestionsList';
-import './Home.css';
+import React from "react";
+import { useApp } from "../context/AppContext";
+import PromptInput from "../components/PromptInput";
+import SuggestionsList from "../components/SuggestionsList";
+import "../styles/Home.css";
 
 function Home() {
   const { showSuggestions } = useApp();
@@ -18,8 +18,9 @@ function Home() {
                 <span className="gradient-text"> AI-Powered Grading</span>
               </h1>
               <p className="hero-description">
-                Get real-time feedback and expert suggestions to create prompts that deliver 
-                exceptional results. Start typing below and watch your prompt score improve instantly.
+                Get real-time feedback and expert suggestions to create prompts
+                that deliver exceptional results. Start typing below and watch
+                your prompt score improve instantly.
               </p>
             </div>
             <PromptInput />

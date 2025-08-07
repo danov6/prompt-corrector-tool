@@ -4,13 +4,12 @@ import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
-import './App.css';
 
 function App() {
   return (
     <AppProvider>
       <Router>
-        <div className="App">
+        <div className="app">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />

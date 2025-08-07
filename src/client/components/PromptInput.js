@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useApp } from '../context/AppContext';
 import { gradePrompt, getSuggestions } from '../services/api';
-import './PromptInput.css';
+import '../styles/PromptInput.css';
 
 function PromptInput() {
   const { currentPrompt, currentScore, dispatch } = useApp();
@@ -98,14 +98,25 @@ function PromptInput() {
           </div>
         </div>
 
-        <button
-          onClick={handleGradePrompt}
-          disabled={!localPrompt.trim()}
-          className="grade-button"
-          aria-label="Get detailed suggestions for improving your prompt"
-        >
-          Grade My Prompt
-        </button>
+        <div className="button-row">
+          <button className="feature-button" disabled>
+            Enable Autocomplete
+          </button>
+          <button className="feature-button" disabled>
+            Templates
+          </button>
+          <button className="feature-button" disabled>
+            History
+          </button>
+          <button
+            onClick={handleGradePrompt}
+            disabled={!localPrompt.trim()}
+            className="grade-button"
+            aria-label="Get detailed suggestions for improving your prompt"
+          >
+            Grade My Prompt
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ body {
   background-color: #ffffff;
 }
 
-.App {
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
