@@ -8,7 +8,6 @@
 }
 
 .navbar-container {
-  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -88,6 +87,26 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.github-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+.github-link:hover .github-icon {
+  transform: scale(1.1);
+}
+
+.github-text {
+  font-size: 0.9rem;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .navbar-container {
@@ -108,5 +127,14 @@
   .navbar-link {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
+  }
+  
+  .github-text {
+    display: none;
+  }
+  
+  .github-icon {
+    width: 18px;
+    height: 18px;
   }
 }

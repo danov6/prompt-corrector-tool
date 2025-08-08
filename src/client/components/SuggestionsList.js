@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import "../styles/SuggestionsList.css";
 
@@ -13,6 +14,7 @@ function SuggestionsList() {
   } = useApp();
   const hasSavedRef = useRef(false);
   const [hoveredSuggestion, setHoveredSuggestion] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (
@@ -38,7 +40,8 @@ function SuggestionsList() {
   ]);
 
   const handleNewPrompt = () => {
-    dispatch({ type: "RESET_PROMPT" });
+    dispatch({ type: "CLEAR_SESSION" });
+    navigate('/');
   };
 
   if (!showSuggestions) {

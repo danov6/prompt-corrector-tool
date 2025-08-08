@@ -19,6 +19,9 @@ function appReducer(state, action) {
       return { ...state, currentScore: action.payload };
     case 'SET_SUGGESTIONS':
       return { ...state, suggestions: action.payload, showSuggestions: true };
+    case 'SET_SUGGESTIONS_AND_NAVIGATE':
+      // This action will be handled by the component that dispatches it
+      return { ...state, suggestions: action.payload, showSuggestions: true };
     case 'SET_LOADING':
       return { ...state, isLoading: action.payload };
     case 'ADD_TO_HISTORY':
@@ -38,6 +41,17 @@ function appReducer(state, action) {
         suggestions: [], 
         showSuggestions: false 
       };
+    case 'CLEAR_SESSION':
+      localStorage.removeItem('promptGraderSession');
+      return { 
+        ...state, 
+        currentPrompt: '', 
+        currentScore: 0, 
+        suggestions: [], 
+        showSuggestions: false 
+      };
+    case 'LOAD_SESSION':
+      return { ...state, ...action.payload };
     default:
       return state;
   }
@@ -46,8 +60,9 @@ function appReducer(state, action) {
 export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  // Load history from localStorage on mount
+  // Load data from localStorage on mount
   useEffect(() => {
+    // Load history
     const savedHistory = localStorage.getItem('promptGraderHistory');
     if (savedHistory) {
       try {
@@ -55,6 +70,17 @@ export function AppProvider({ children }) {
         dispatch({ type: 'LOAD_HISTORY', payload: parsedHistory });
       } catch (error) {
         console.error('Failed to load history from localStorage:', error);
+      }
+    }
+
+    // Load current session data
+    const savedSession = localStorage.getItem('promptGraderSession');
+    if (savedSession) {
+      try {
+        const parsedSession = JSON.parse(savedSession);
+        dispatch({ type: 'LOAD_SESSION', payload: parsedSession });
+      } catch (error) {
+        console.error('Failed to load session from localStorage:', error);
       }
     }
   }, []);
@@ -65,6 +91,20 @@ export function AppProvider({ children }) {
       localStorage.setItem('promptGraderHistory', JSON.stringify(state.history));
     }
   }, [state.history]);
+
+  // Save current session to localStorage whenever it changes (but not on initial load)
+  useEffect(() => {
+    // Only save if we have meaningful data or if we're explicitly clearing
+    if (state.currentPrompt || state.showSuggestions || state.suggestions.length > 0) {
+      const sessionData = {
+        currentPrompt: state.currentPrompt,
+        currentScore: state.currentScore,
+        suggestions: state.suggestions,
+        showSuggestions: state.showSuggestions
+      };
+      localStorage.setItem('promptGraderSession', JSON.stringify(sessionData));
+    }
+  }, [state.currentPrompt, state.currentScore, state.suggestions, state.showSuggestions]);
 
   const saveToHistory = useCallback((prompt, score, suggestions) => {
     const historyEntry = {

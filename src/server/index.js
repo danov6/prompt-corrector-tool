@@ -11,6 +11,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/prompts', require('./routes/prompts'));
+app.use('/api/contact', require('./routes/contact'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Prompt Grader API is running!' });
