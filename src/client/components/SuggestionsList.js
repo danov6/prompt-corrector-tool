@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
+import { SCORE_COLORS, CATEGORY_ICONS, ROUTES } from '../../shared/constants';
 import "../styles/SuggestionsList.css";
 
-function SuggestionsList() {
+const SuggestionsList = () => {
   const {
     suggestions,
     currentPrompt,
@@ -49,23 +50,14 @@ function SuggestionsList() {
   }
 
   const getScoreColor = (score) => {
-    if (score >= 80) return "#22c55e";
-    if (score >= 60) return "#f59e0b";
-    if (score >= 40) return "#f97316";
-    return "#ef4444";
+    if (score >= 80) return SCORE_COLORS.EXCELLENT;
+    if (score >= 60) return SCORE_COLORS.GOOD;
+    if (score >= 40) return SCORE_COLORS.FAIR;
+    return SCORE_COLORS.POOR;
   };
 
   const getCategoryIcon = (category) => {
-    const icons = {
-      Persona: "👤",
-      Examples: "📝",
-      Length: "📏",
-      Specificity: "🎯",
-      Context: "🔍",
-      Structure: "🏗️",
-      Clarity: "💡",
-    };
-    return icons[category] || "💡";
+    return CATEGORY_ICONS[category] || CATEGORY_ICONS.Clarity;
   };
 
   const highlightText = (text, patterns) => {

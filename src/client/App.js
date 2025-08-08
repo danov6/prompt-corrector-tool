@@ -5,8 +5,9 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Feedback from './pages/Feedback';
+import HowToPrompt from './pages/HowToPrompt';
 
-function App() {
+const App = () => {
   return (
     <AppProvider>
       <Router>
@@ -14,6 +15,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/how-to-prompt" element={<HowToPrompt />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/feedback" element={<Feedback />} />
           </Routes>

@@ -40,7 +40,7 @@ router.post('/send', async (req, res) => {
     // Email content
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'giovaldezdev@gmail.com',
+      to: process.env.EMAIL_RECIPIENT,
       subject: `Contact Form - Message from ${firstName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

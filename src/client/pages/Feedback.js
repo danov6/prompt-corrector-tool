@@ -4,7 +4,7 @@ import { useApp } from "../context/AppContext";
 import SuggestionsList from "../components/SuggestionsList";
 import "../styles/Feedback.css";
 
-function Feedback() {
+const Feedback = () => {
   const { currentPrompt, suggestions, showSuggestions } = useApp();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +14,7 @@ function Feedback() {
     const checkSessionData = () => {
       const savedSession = localStorage.getItem("promptGraderSession");
 
-      if (!savedSession) {
+      if (!savedSession) {  
         navigate("/");
         return;
       }

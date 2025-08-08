@@ -2,7 +2,7 @@ import React from "react";
 import PromptInput from "../components/PromptInput";
 import "../styles/Home.css";
 
-function Home() {
+const Home = () => {
   return (
     <div className="home-container">
       <main className="main-content" role="main">

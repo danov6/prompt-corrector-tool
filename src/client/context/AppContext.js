@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
+import { STORAGE_KEYS, MAX_HISTORY_ENTRIES } from '../../shared/constants';
 
 const AppContext = createContext();
 
@@ -20,14 +21,13 @@ function appReducer(state, action) {
     case 'SET_SUGGESTIONS':
       return { ...state, suggestions: action.payload, showSuggestions: true };
     case 'SET_SUGGESTIONS_AND_NAVIGATE':
-      // This action will be handled by the component that dispatches it
       return { ...state, suggestions: action.payload, showSuggestions: true };
     case 'SET_LOADING':
       return { ...state, isLoading: action.payload };
     case 'ADD_TO_HISTORY':
       return { 
         ...state, 
-        history: [action.payload, ...state.history.slice(0, 49)] // Keep last 50 entries
+        history: [action.payload, ...state.history.slice(0, MAX_HISTORY_ENTRIES - 1)] // Keep last entries
       };
     case 'LOAD_HISTORY':
       return { ...state, history: action.payload };
@@ -42,7 +42,7 @@ function appReducer(state, action) {
         showSuggestions: false 
       };
     case 'CLEAR_SESSION':
-      localStorage.removeItem('promptGraderSession');
+      localStorage.removeItem(STORAGE_KEYS.SESSION);
       return { 
         ...state, 
         currentPrompt: '', 
@@ -63,7 +63,7 @@ export function AppProvider({ children }) {
   // Load data from localStorage on mount
   useEffect(() => {
     // Load history
-    const savedHistory = localStorage.getItem('promptGraderHistory');
+    const savedHistory = localStorage.getItem(STORAGE_KEYS.HISTORY);
     if (savedHistory) {
       try {
         const parsedHistory = JSON.parse(savedHistory);
@@ -74,7 +74,7 @@ export function AppProvider({ children }) {
     }
 
     // Load current session data
-    const savedSession = localStorage.getItem('promptGraderSession');
+    const savedSession = localStorage.getItem(STORAGE_KEYS.SESSION);
     if (savedSession) {
       try {
         const parsedSession = JSON.parse(savedSession);
@@ -88,7 +88,7 @@ export function AppProvider({ children }) {
   // Save history to localStorage whenever it changes
   useEffect(() => {
     if (state.history.length > 0) {
-      localStorage.setItem('promptGraderHistory', JSON.stringify(state.history));
+      localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify(state.history));
     }
   }, [state.history]);
 
@@ -102,7 +102,7 @@ export function AppProvider({ children }) {
         suggestions: state.suggestions,
         showSuggestions: state.showSuggestions
       };
-      localStorage.setItem('promptGraderSession', JSON.stringify(sessionData));
+      localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(sessionData));
     }
   }, [state.currentPrompt, state.currentScore, state.suggestions, state.showSuggestions]);
 

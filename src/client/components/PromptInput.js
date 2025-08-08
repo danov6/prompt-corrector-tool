@@ -2,9 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { gradePrompt, getSuggestions } from "../services/api";
+import { SCORE_COLORS, SCORE_LABELS, DEBOUNCE_DELAY } from '../../shared/constants';
 import "../styles/PromptInput.css";
 
-function PromptInput() {
+const PromptInput = () => {
   const {
     currentPrompt,
     currentScore,
@@ -30,7 +31,7 @@ function PromptInput() {
       } else {
         dispatch({ type: "SET_SCORE", payload: 0 });
       }
-    }, 300),
+    }, DEBOUNCE_DELAY),
     [dispatch]
   );
 
